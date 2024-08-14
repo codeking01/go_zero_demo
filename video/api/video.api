@@ -1,0 +1,20 @@
+type (
+	VideoReq {
+		Id string `path:"id"`
+	}
+	VideoRes {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	}
+)
+
+service video {
+	@handler getVideo
+	get /api/videos/:id (VideoReq) returns (VideoRes)
+}
+
+// goctl api go -api video/api/video.api -dir video/api/
+// ----------------------------------------------------------------------------------------
+// goctl api go: goctl 的子命令，用于生成 Go 代码文件。它会根据 API 文件自动生成所需的 Go 代码结构。
+// -api video/api/video.api: 指定了 API 定义文件的路径。这个 .api 文件描述了服务的接口、路由等信息。goctl 会根据这个文件生成相应的 Go 代码。
+// -dir video/api/: 指定生成代码的目标目录。在这个例子中，生成的代码将会被放到 video/api/ 目录下。
